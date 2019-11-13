@@ -1,0 +1,26 @@
+<html>
+<head></head>
+<body>
+<table>
+    <tr>
+                    <th class="q_num">登録したい単語を入力してください</th>
+                    <th class="q_q">単語の説明を入力してください</th>
+                    <th class="q_p">単語のタグを設定してください</th>
+
+    </tr>
+
+    <td>
+  <form action="/polls/add/{% if todo %}{{ todo.todo_id }}/{% endif %}" method="post">
+    {% csrf_token %}
+    <tr>
+    <th>単語: <input type="text" name="title" value="{{ todo.title }}"/></th>
+    <th>単語の説明: <input type="text" name="main_text" value="{{ todo.main_text }}"/></th>
+    <th>キーワード: <input type="text" name="keyword" value="{{ todo.keyword }}"/></th>
+    <th><input type="hidden" name="todo_id" value="{{ todo.todo_id }}"/></th>
+    <th><input type="submit" value="登録"/></th>
+    <tr>
+  </form>
+</td>
+</table>
+</body>
+</html>

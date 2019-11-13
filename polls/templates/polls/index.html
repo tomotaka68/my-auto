@@ -1,0 +1,91 @@
+<!-- myapp/templates/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" type="text/css"
+            href="{% static 'polls/css/style.css' %}" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  </head>
+
+  <body>
+    <form action="" method="post">
+
+      {% csrf_token %}
+      {% if not loggedIn %}
+      <input type="text" name="name" required />
+      <input type="password" name="passwd" required />
+      <input type="submit" value="submit">
+      {% else %}
+      <p>ログインユーザ名 {{ name }}</p>
+      <p>---------------------------------------------------------------------</p>
+      <p>元の文章 {{ origin_sentence }}</p>
+      <p>---------------------------------------------------------------------</p>
+      <p>文章を分解
+      {% for item2 in sentence %}
+            <tr>
+                    <div>
+
+                        <td>{{forloop.counter}}{{item2}}</td>
+                    </div>
+            </tr>
+        {% endfor %}
+    </p>
+      <input type="submit" value="ログアウト" name="logout" />
+      <br>
+      <a href="/polls/new/">登録</a>
+      {% if todo_list %}
+            <table>
+                <tr>
+                  <td>id</td>
+                  <td>title</td>
+                  <td></td>
+                </tr>
+                {% for todo in todo_list %}
+                <tr>
+                  <td><a href="/polls/{{ todo.todo_id }}/">{{ todo.todo_id }}</a></td>
+                  <td>{{ todo.title }}</td>
+                  <td><a href="/polls/delete/{{ todo.todo_id }}/">削除</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>問題素材はまだ登録されていません</p>
+        {% endif %}
+      {% endif %}
+    </form>
+    <h1>問題集</h1>
+    <hr>
+    <h2>選択式問題</h2>
+    <div id="text_q"></div>
+    <h2>選択</h2>
+    <div id="text_s"></div>
+    <h2>解答</h2>
+    <div id="text_a"></div>
+
+    <div class="wrapper">
+      <h1>〇×式問題</h1>
+      <div id="question_ox"></div>
+      <div id="buttons">
+        <input type="button" class="button" value="○" onclick="hantei(1)">
+        <input type="button" class="button" value="×" onclick="hantei(2)">
+      </div>
+      <h2>解答</h2>
+      <div id="text_ans"></div>
+    </div>
+
+    <h2>穴埋め式問題</h2>
+    問題:<div id="questionana"></div>
+    <input type="text" id="answerana" value="">
+    <input type="button" value="答える" onclick="doAnswer();">
+    <h2>解答</h2>
+    <div id="textana_ans"></div>
+    <script>
+    var data3 = '{% static "data2.csv" %}'
+    </script>
+
+    <script type="text/javascript" src="{% static 'polls/js/quiz.js' %}"></script>
+
+  </body>
+</html>
