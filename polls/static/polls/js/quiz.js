@@ -1,5 +1,5 @@
 var data4;
-getCSVFile('/static/data2.csv');
+getCSVFile('../static/data2.csv');
 
 function getCSVFile(url) {
     var xhr = new XMLHttpRequest();
