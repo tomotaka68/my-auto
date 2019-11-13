@@ -7,7 +7,7 @@ function getCSVFile(url) {
     createArray(xhr.responseText);
     };
 
-    xhr.open("get", url, true);
+    xhr.open("get", url, false);
     xhr.send(null);
 
 }
