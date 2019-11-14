@@ -1,31 +1,4 @@
-var data4;
-getCSVFile('../static/data2.csv');
 
-function getCSVFile(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-    createArray(xhr.responseText);
-    };
-
-    xhr.open("get", url, false);
-    xhr.send(null);
-
-}
-
-function createXMLHttpRequest() {
-    var XMLhttpObject = null;
-    XMLhttpObject = new XMLHttpRequest();
-    return XMLhttpObject;
-}
-
-function createArray(csvData) {
-    var tempArray = csvData.split("\r\n");
-    var csvArray = new Array();
-    for(var i = 0; i<tempArray.length;i++){
-    csvArray[i] = tempArray[i].split(",");
-    }
-    data4=csvArray;
-}
 
 var n = 2000//問題数
 
@@ -73,37 +46,39 @@ for (y3=0; y3<ary.length; y3++){
 
 var test_array = [ 1, 2, 3];
 
+function select_quiz_gene(){
 
-for(var st = 0; st <ar.length ; st++){
-
-
-    ary = data4;
-    rand=Math.floor(Math.random() * ary.length);
-    var random = ary[rand];
-    // もとの配列からは削除する
-    ary.splice(rand, 1);
-    //random2 =  new Array(ary.length);
-    random2 = ary;
-
-    const selected = randomSelect(random2.slice(), 2);
-
-    var randomNumber = Math.floor( Math.random() * (4 - 1) + 1 );
+    for(var st = 0; st <ar.length ; st++){
 
 
+        ary = data4;
+        rand=Math.floor(Math.random() * ary.length);
+        var random = ary[rand];
+        // もとの配列からは削除する
+        ary.splice(rand, 1);
+        //random2 =  new Array(ary.length);
+        random2 = ary;
 
-    //ary = ary_origin;
-    // 配列arrayからランダムにnum個の要素を取り出す
-    //ary.push(ary[rand]);
+        const selected = randomSelect(random2.slice(), 2);
 
-    t = shuffle(test_array);
+        var randomNumber = Math.floor( Math.random() * (4 - 1) + 1 );
 
-    ar[st][0] = random[0];
-    ar[st][t[0]] = random[1];
-    ar[st][t[1]] = selected[0][1];
-    ar[st][t[2]] = selected[1][1];
-    ar[st][4] = t[0];
+
+
+        //ary = ary_origin;
+        // 配列arrayからランダムにnum個の要素を取り出す
+        //ary.push(ary[rand]);
+
+        t = shuffle(test_array);
+
+        ar[st][0] = random[0];
+        ar[st][t[0]] = random[1];
+        ar[st][t[1]] = selected[0][1];
+        ar[st][t[2]] = selected[1][1];
+        ar[st][4] = t[0];
+    }
+    return ar;
 }
-
 function getCol(matrix, col){
    var column = [];
    for(var i=0; i<matrix.length; i++){
@@ -121,7 +96,7 @@ var array = [
 ]; //..your 3x20 array
 var a1 = getCol(array, 0); //Get first column
 
-var qa = ar;
+var qa = select_quiz_gene();
 
 //count = 0; //問題番号
 q_sel = 3; //選択肢の数
@@ -221,54 +196,55 @@ function anser(num) {
 	}
 }
 
-
-var qaa= data4;
-
-
-
-var length = 20;
-var ar_ox = new Array(1);
-for(let y = 0; y < qaa.length; y++) {
-  ar_ox[y] = new Array(1).fill(0);
-}
-var ans_ox = new Array(1);
-for(let y = 0; y < qaa.length; y++) {
-  ans_ox[y] = new Array(1).fill(0);
-}
+function dig_quest(){
+    var qaa= data4;
 
 
-for(var z = 0; z<ar_ox.length-1 ; z++){
 
-    var aryq = qaa;
-    randq=Math.floor(Math.random() * aryq.length);
-    var randomq = aryq[randq];
-
-    aryq.splice(randq, 1);
-
-    randomq2 = aryq;
-
-    var a_ox= randomq[0]
-
-    const selectedq = randomSelect(randomq2.slice(), 1);
-
-    rand2_1 =  Math.floor(Math.random()*2 + 1) ;
-    if(rand2_1==2){
-        var b_ox = selectedq[0][1];
-        ans_ox[z][0] = selectedq[0][0];
-        ans_ox[z][1] = selectedq[0][1]
-        var c_ox = a_ox + 'とは' + b_ox;
-        ar_ox[z][0] = c_ox;
-        ar_ox[z][1] = 2 ;
+    var length = 20;
+    var ar_ox = new Array(1);
+    for(let y = 0; y < qaa.length; y++) {
+      ar_ox[y] = new Array(1).fill(0);
     }
-    else if(rand2_1==1){
-        var d_ox =  selectedq[0][0] + 'とは' +selectedq[0][1];
-        ar_ox[z][0] = d_ox;
-        ar_ox[z][1] = 1;
+    var ans_ox = new Array(1);
+    for(let y = 0; y < qaa.length; y++) {
+      ans_ox[y] = new Array(1).fill(0);
     }
 
+
+    for(var z = 0; z<ar_ox.length-1 ; z++){
+
+        var aryq = qaa;
+        randq=Math.floor(Math.random() * aryq.length);
+        var randomq = aryq[randq];
+
+        aryq.splice(randq, 1);
+
+        randomq2 = aryq;
+
+        var a_ox= randomq[0]
+
+        const selectedq = randomSelect(randomq2.slice(), 1);
+
+        rand2_1 =  Math.floor(Math.random()*2 + 1) ;
+        if(rand2_1==2){
+            var b_ox = selectedq[0][1];
+            ans_ox[z][0] = selectedq[0][0];
+            ans_ox[z][1] = selectedq[0][1]
+            var c_ox = a_ox + 'とは' + b_ox;
+            ar_ox[z][0] = c_ox;
+            ar_ox[z][1] = 2 ;
+        }
+        else if(rand2_1==1){
+            var d_ox =  selectedq[0][0] + 'とは' +selectedq[0][1];
+            ar_ox[z][0] = d_ox;
+            ar_ox[z][1] = 1;
+        }
+
+    }
+    return ar_ox;
 }
-
-
+var ar_ox = dig_quest();
 var qa_ox = [
   ['「テトリス（ゲーム）」を開発したのは、日本人だ。', 2],
   ['生きている間は、有名な人であっても広辞苑に載ることはない。 ', 1],

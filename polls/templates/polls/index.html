@@ -5,7 +5,37 @@
   <head>
       <link rel="stylesheet" type="text/css"
             href="{% static 'polls/css/style.css' %}" />
-    <script type="text/javascript" src="{% static 'polls/js/quiz.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script>
+        var data4;
+        getCSVFile('../static/data2.csv');
+
+        function getCSVFile(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+            createArray(xhr.responseText);
+            };
+
+            xhr.open("get", url, false);
+            xhr.send(null);
+
+        }
+
+        function createXMLHttpRequest() {
+            var XMLhttpObject = null;
+            XMLhttpObject = new XMLHttpRequest();
+            return XMLhttpObject;
+        }
+
+        function createArray(csvData) {
+            var tempArray = csvData.split("\r\n");
+            var csvArray = new Array();
+            for(var i = 0; i<tempArray.length;i++){
+            csvArray[i] = tempArray[i].split(",");
+            }
+            data4=csvArray;
+        }
+    </script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
   </head>
