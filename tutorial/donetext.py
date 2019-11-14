@@ -56,7 +56,7 @@ with open('data1.csv',encoding='UTF-8') as f:
         tinko=tinko.replace('□　、', '')
         tinko=tinko.replace('□。', '')
         tinko=tinko.replace('□  ', '')
-        print(tinko)
+        
 
 
         kaedetoneko.append([unko,tinko])
