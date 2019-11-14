@@ -59,8 +59,10 @@ def index(request):
     }
     return render(request, "polls/index.html", params)
 
-
-
+def quest2(request):
+    return render(request, 'polls/quest2.html')
+def quest(request):
+    return render(request, 'polls/quest.html')
 
 def new(request):
     return render(request, 'polls/new.html')

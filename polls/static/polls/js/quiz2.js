@@ -1,7 +1,5 @@
+var n = 6;//問題数
 
-
-
-    var n = 2000;//問題数
 
     ar = new Array(n);
     for (y2=0; y2<ar.length; y2++){
