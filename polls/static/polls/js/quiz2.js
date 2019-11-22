@@ -302,6 +302,7 @@ var n = 30;//問題数
 
     var count_ox = 0;
     var correctNum_ox = 0;
+    var ans_count2=0;
 
     window.onload = function() {
       // 最初の問題を表示
@@ -325,18 +326,20 @@ var n = 30;//問題数
           question_ox.innerHTML = (count_ox + 1) + '問目：' + ar_ox[count_ox][0]+ '〇か×か？';
           if(btnNo==1){
               if(ar_ox[count_ox-1][1]==2){
-                  s = '2不正解2!' + ar_ox[count_ox-1][0] + 'は不正解.' +'<br><br>'+ '正解は'+ans_ox[count_ox-1][0]+'とは'+ ans_ox[count_ox-1][1];
+                  s = '不正解!' + ar_ox[count_ox-1][0] + 'は不正解.' +'<br><br>'+ '正解は'+ans_ox[count_ox-1][0]+'とは'+ ans_ox[count_ox-1][1]+'<br><br>'+'現在の正解数は'+ans_count2;
               }
               else if(ar_ox[count_ox-1][1]==1){
-                  s ='1正解1!' + ar_ox[count_ox-1][0] + 'は正解';
+                  ans_count2++;
+                  s ='正解!' + ar_ox[count_ox-1][0] + 'は正解'+'<br><br>'+'現在の正解数は'+ans_count2;
               }
           }
           if(btnNo==2){
             if(ar_ox[count_ox-1][1]==2){
-                s = '4正解4!' + ar_ox[count_ox-1][0] + 'は不正解.' +'<br><br>'+ '正解は'+ans_ox[count_ox-1][0]+'とは'+ ans_ox[count_ox-1][1];
+                ans_count2++;
+                s = '正解!' + ar_ox[count_ox-1][0] + 'は不正解.' +'<br><br>'+ '正解は'+ans_ox[count_ox-1][0]+'とは'+ ans_ox[count_ox-1][1]+'<br><br>'+'現在の正解数は'+ans_count2;
             }
             else if(ar_ox[count_ox-1][1]==1){
-                s ='3不正解3!' + ar_ox[count_ox-1][0] + 'は正解';
+                s ='不正解!' + ar_ox[count_ox-1][0] + 'は正解'+'<br><br>'+'現在の正解数は'+ans_count2;
             }
             }
           document.getElementById("text_ans").innerHTML = s;
