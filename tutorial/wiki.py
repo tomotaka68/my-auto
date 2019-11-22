@@ -18,7 +18,6 @@ internet_set1 = set(['離散数学','応用数学','ケーブル','2次元配列
 internet_set2 = set(['ネットワーク','トポロジ','ケーブル','OSI参照モデル','2進数','16進数','ファイバ','0BASE','コリジョン',])
 internet_set3 = set(['イーサネット','イーサーネット','レイヤ2','スイッチング','レイヤ',])
 internet_set4 = set(['TCP','IP','インターネット層','トランスポート層','DHCP','DNS','プロトコル','ルーター',])
-anime_set = ['アニメ','ラジオ','番組','テレビ','ゲーム','漫画']
 internet_set = internet_set1
 with open(r"C:\Users\hansa\Desktop\mysite\tutorial\jawiki-latest-abstract.xml",'r',encoding="utf-8_sig") as source:
 
@@ -75,11 +74,9 @@ with open(r"C:\Users\hansa\Desktop\mysite\tutorial\jawiki-latest-abstract.xml",'
                         surface = element[0]
 
 
-                        if text.find(anime_set[0])>=0 or text.find(anime_set[1])>=0 or text.find(anime_set[2])>=0 or text.find(anime_set[3])>=0 or text.find(anime_set[4])>=0 or text.find(anime_set[5])>=0:
-                            break
-                        else:
-                            if surface in internet_set:
-                                list.append([solt.text,result.text])
+
+                        if surface in internet_set:
+                            list.append([solt.text,result.text])
 
 
 

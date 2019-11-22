@@ -61,6 +61,10 @@ def index(request):
 
 def quest2(request):
     return render(request, 'polls/quest2.html')
+def quest3(request):
+    return render(request, 'polls/quest3.html')
+def quest4(request):
+    return render(request, 'polls/quest4.html')
 def quest(request):
     return render(request, 'polls/quest.html')
 
