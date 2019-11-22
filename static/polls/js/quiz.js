@@ -110,7 +110,7 @@ var data4=[['オペレーティングシステム', 'OS、コンピュータの�
     function setReady() {
     	count = 0; //問題番号
     	ansers = new Array(); //解答記録
-
+        ans_count=0;
     	//最初の問題
     	quiz();
     }
@@ -135,9 +135,10 @@ var data4=[['オペレーティングシステム', 'OS、コンピュータの�
     	//答え合わせ
     	if (num == qa[count][q_sel + 1]) {
     		//正解
-    		s += "○" + qa[count][num];
+            ans_count++;
+    		s += "○" + qa[count][num]+"正解数"+ans_count;
     	} else {
-    		s += "×" + qa[count][num];
+    		s += "×" + qa[count][num]+"正解数"+ans_count;
     	}
     	document.getElementById("text_a").innerHTML = s;
         //次の問題を表示
@@ -159,10 +160,11 @@ var data4=[['オペレーティングシステム', 'OS、コンピュータの�
     	//答え合わせ
     	if (num == qa[count][q_sel + 1]) {
     		//正解
-    		s += "○" + qa[count][num];
+            ans_count++;
+    		s += "○" + qa[count][num]+"正解数"+ans_count;
     		ansers[count] = "○";
     	} else {
-    		s += "×" + qa[count][num];
+    		s += "×" + qa[count][num]+"正解数"+ans_count;
     		ansers[count] = "×";
     	}
     	document.getElementById("text_a").innerHTML = s;
